@@ -18,6 +18,8 @@ public class GetMethodeEx03 extends HttpServlet {
 		
 		// add comment 
 		
+		// add comment notebook
+		
 		// 한글 깨짐 방지
 //		response.setCharacterEncoding("utf-8");
 //		response.setContentType("text/plain");
