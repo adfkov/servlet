@@ -7,6 +7,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -56,11 +60,31 @@ map = new HashMap<String, Object>() {
     } 
 };
 list.add(map);
+
+
+
 %>
+<%
+	// 테이블에 보여줄 책 정보(target) 뽑아내기
+ 	int id = Integer.parseInt(request.getParameter("id"));
+	Map<String, Object> target = new HashMap<>();
+	for(Map<String, Object> item : list) {
+		if(id == (int) item.get("id")) {
+			target = item;
+			break;
+		}
+	}
+	//out.print(target);
+%>
+
 	<div class="container d-flex">
-		<img src="<%=request.getParameter("id")%>">
-		<div class="title">
-			<h1 class=""></h1>
+		<div><img src="<%=target.get("image")%>" alt="표지 이미지" width="300"></div>
+	
+	<!--  span + d-block = div -->
+		<div>
+			<div class="display-1 font-weight-bold"><%=target.get("title") %></div>
+			<div class="display-2 text-info"><%=target.get("author") %></div>
+			<div class="display-4 text-secondary"><%=target.get("publisher") %></div>
 		</div>
 	</div>
 </body>
