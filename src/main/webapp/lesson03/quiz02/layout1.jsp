@@ -168,7 +168,7 @@ footer { height: 10%;}
 				 %>
 					<tr>
 						<td class="col-2"><%=musicList.get(i).get("id") %></td>
-						<td class="col-5"><a href="/lesson03/quiz02/layout2.jsp"><%=musicList.get(i).get("title") %></a></td>
+						<td class="col-5"><a href="/lesson03/quiz02/layout2.jsp?id=<%=musicList.get(i).get("id") %>"><%=musicList.get(i).get("title") %></a></td>
 						<td class="col-5"><%=musicList.get(i).get("album") %></td>
 					</tr>
 					<%
