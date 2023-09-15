@@ -10,39 +10,46 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 		
 <meta charset="UTF-8">
-<title>Iadfaf</title>
+<title>즐겨찾기 목록</title>
 </head>
 <body>
-	<div class="container" id= "wrap" >
-		<table class="table text-center">
-			<thead>
-				<tr class="d-flex">
-				<th class="col-3">사이트</th>
-				<th class="col-9">사이트 주소</th>
-				</tr>
-			</thead>
-			
-			<tbody><%
+<%
 			
 			// DB 연결
 			MysqlService ms = MysqlService.getInstance();
 			ms.connect();
-			// DB select
-			String selectQuery = "select `name`,`url` from `url_table` order by `id` desc";
+			// DB select 
+			String selectQuery = "select * from `url_table` order by `id` desc";
+			// 셀렉트 수행
 			ResultSet res = ms.select(selectQuery);
-			// DB 연결 해제
-						ms.disconnect();
-			while ( res.next()) {
+			
+			
+	
 				
 			%>
-				<tr class="d-flex">
+	<div class="container" id= "wrap" >
+		<table class="table text-center">
+			<thead>
+				<tr>
+				<th class="col-3">사이트</th>
+				<th class="col-5">사이트 주소</th>
+				<th class="col-4">삭제</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+			<% 
+				while(res.next()) {
+			%>
+				<tr>
 					<td class="col-3"><%= res.getString("name") %></td>
-					<td class="col-9"><a href="<%= res.getString("url") %>" alt="adf"><%= res.getString("url") %></td>
-					
+					<td class="col-5"><a href="<%= res.getString("url") %>" alt="adf" target="_blank"><%= res.getString("url") %></td>
+					<td class="col-4"><a href="/lesson04/delete-bookmark?id=<%=res.getInt("id") %>"  class="btn btn-danger">삭제</a></td>
+					<!-- -->
 				</tr>
 				<%
-			}
-				
+			
+				}
 				%>
 			</tbody>
 		</table>
@@ -66,5 +73,10 @@
 			%>
 		</tbody> --%>
 	</div>
-</body>
+			<% // DB 연결 해제
+			ms.disconnect();
+		
+
+				%>
+				</body>
 </html>
