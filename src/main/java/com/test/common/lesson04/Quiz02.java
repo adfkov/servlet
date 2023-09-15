@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.test.common.MysqlService;
 
-@WebServlet("/lesson04/quiz02.jsp")
+@WebServlet("/lesson04/quiz02")
 public class Quiz02 extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request ,HttpServletResponse response) throws IOException
@@ -32,13 +32,11 @@ public class Quiz02 extends HttpServlet {
 				try {
 					ResultSet res = ms.select(insertQuery);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				try {
 					ms.update(insertQuery);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				// DB 연결 해제
